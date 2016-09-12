@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Baidu Map Widget</title>
+</head>
+
+<body>
+  <div id="map" style="height: 200px;"></div>
+
+  <script>
+    function loadScript() {
+      var ak = queryString().ak || 'YIE3NeIyCU0OiZkcys9w8g7H9tKQ4KMf';
+      var script = document.createElement("script");
+      script.src = "http://api.map.baidu.com/api?v=2.0&ak=" + ak + "&callback=initialize"; //此为v2.0版本的引用方式
+      document.body.appendChild(script);
+    }
+
+    function queryString() {
+      var e = window.location.href,
+        r;
+      var t = e.slice(e.indexOf("?") + 1).split("&");
+      var a = [];
+      for (i = 0; i < t.length; i++) {
+        r = t[i].split("=");
+        a.push(r[0]);
+        a[r[0]] = r[1]
+      }
+      return a
+    }
+
+    function initialize(){
+      var options = queryString();
+      var map = new BMap.Map('map');
+
+      if(options.marker) {
+        var d = options.marker.split(',');
+        var label = decodeURI(d[2]);
+        var point = new BMap.Point(d[0], d[1])
+        map.centerAndZoom(point, 16);
+
+        // 设置 marker
+        var marker = new BMap.Marker(point);
+        marker.setLabel(new BMap.Label(label, {offset:new BMap.Size(0, -18)}));
+        map.addOverlay(marker);
+
+        var infoWindow = new BMap.InfoWindow(label, {title: 'test'});  // 创建信息窗口对象
+      	marker.addEventListener("click", function(){
+		      map.openInfoWindow(infoWindow, point); //开启信息窗口
+      	});
+        map.openInfoWindow(infoWindow, point);
+      }
+    }
+
+    window.onload = loadScript;
+  </script>
+</body>
+</html>
