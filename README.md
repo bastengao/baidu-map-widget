@@ -37,6 +37,8 @@ Data Options:
 <iframe src="http://baidu-map-widget.basten.me/widget.html?center=108.953382,34.265678,14&marker=108.953382,34.265678&markerlabel=钟楼&height=400" width="100%" height="400"></iframe>
 ```
 
+经纬度可以通过[百度地图坐标工具](http://api.map.baidu.com/lbsapi/getpoint/index.html)获得。
+
 ## TODO
 * controls
 * infowindow
