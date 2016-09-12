@@ -38,6 +38,16 @@
 
     var url = baseurl + '?' + toQueryString(options);
     iframe.src = url;
+
+    if(options.width){
+      iframe.width = options.width;
+    } else {
+      iframe.width = '100%';
+    }
+
+    options.height = options.height || 200;
+    iframe.height = options.height;
+
     widget.parentNode.replaceChild(iframe, widget);
   }
 

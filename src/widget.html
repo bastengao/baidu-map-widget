@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Baidu Map Widget</title>
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  </style>
 </head>
 
 <body>
-  <div id="map" style="height: 200px;"></div>
+  <div id="map"></div>
 
   <script>
     function loadScript() {
@@ -31,25 +38,44 @@
       return a
     }
 
-    function initialize(){
+    function initialize() {
       var options = queryString();
+      var mapElem = document.getElementById('map');
+      if(options.height) {
+        console.log(options.height);
+        mapElem.style.height = options.height + 'px';
+      }
+
       var map = new BMap.Map('map');
 
-      if(options.marker) {
-        var d = options.marker.split(',');
-        var label = decodeURI(d[2]);
+      if (options.center) {
+        var d = options.center.split(',');
         var point = new BMap.Point(d[0], d[1])
-        map.centerAndZoom(point, 16);
+        map.centerAndZoom(point, parseInt(d[2]));
+      }
 
-        // 设置 marker
+      if (options.marker) {
+        var d = options.marker.split(',');
+        var point = new BMap.Point(d[0], d[1])
+
         var marker = new BMap.Marker(point);
-        marker.setLabel(new BMap.Label(label, {offset:new BMap.Size(0, -18)}));
         map.addOverlay(marker);
 
-        var infoWindow = new BMap.InfoWindow(label, {title: 'test'});  // 创建信息窗口对象
-      	marker.addEventListener("click", function(){
-		      map.openInfoWindow(infoWindow, point); //开启信息窗口
-      	});
+        if(options.markerlabel) {
+          var label = decodeURI(options.markerlabel);
+          marker.setLabel(new BMap.Label(label, {
+            offset: new BMap.Size(0, -18)
+          }));
+        }
+      }
+
+      if (options.infoWindow) {
+        var infoWindow = new BMap.InfoWindow(label, {
+          title: 'test'
+        });
+        marker.addEventListener("click", function() {
+          map.openInfoWindow(infoWindow, point);
+        });
         map.openInfoWindow(infoWindow, point);
       }
     }
@@ -57,4 +83,5 @@
     window.onload = loadScript;
   </script>
 </body>
+
 </html>
