@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Baidu Map Widget</title>
-  <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-  </style>
-</head>
-
-<body>
-  <div id="map"></div>
-
-<script>
 function loadScript() {
   var ak = queryString().ak || 'YIE3NeIyCU0OiZkcys9w8g7H9tKQ4KMf';
   var script = document.createElement("script");
@@ -121,11 +101,3 @@ function anchorOption(anchor) {
 }
 
 window.onload = loadScript;
-
-</script>
-
-<script>
-
-</script>
-</body>
-</html>

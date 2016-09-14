@@ -27,7 +27,7 @@
   }
 
   function render(widget) {
-    var baseurl = "../src/widget.html";
+    var baseurl = "<%= base_url %>";
     var options = queryDataAttributes(widget);
 
     var iframe = d.createElement('iframe');

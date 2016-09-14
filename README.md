@@ -20,7 +20,8 @@
 ```html
 <div class="baidu-map-widget"
   data-center="108.953382,34.265678,14"
-  data-marker="108.953382,34.265678"></div>
+  data-marker="108.953382,34.265678"
+  control-navigation="true"></div>
 <script type="text/javascript" src="http://baidu-map-widget.basten.me/widget.js"></script>
 ```
 
@@ -30,6 +31,11 @@ Data Options:
 * height:  默认 200
 * marker: "经度,纬度"
 * markerlabel: 标注的说明(需要和marker一起使用)
+* control-navigation:  'true' 默认位置, 'top left', 'top right', 'bottom left', 'bottom right'
+* control-overview:    'true' 默认位置, 'top left', 'top right', 'bottom left', 'bottom right'
+* control-scale:       'true' 默认位置, 'top left', 'top right', 'bottom left', 'bottom right'
+* control-maptype:     'true' 默认位置, 'top left', 'top right', 'bottom left', 'bottom right'
+* control-geolocation: 'true' 默认位置, 'top left', 'top right', 'bottom left', 'bottom right'
 * ak: 默认自带ak, 也可以自定义 [ak](http://lbsyun.baidu.com/index.php?title=jspopular).
 
 或者直接使用 iframe
